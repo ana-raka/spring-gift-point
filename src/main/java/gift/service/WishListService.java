@@ -51,7 +51,6 @@ public class WishListService {
         wishRepository.deleteById(wishId);
     }
 
-
     /*public void updateWish(Long id, WishDto wishDto){
         Wish targetWish = wishRepository.findById(id).get();
         Wish newWish = new Wish(wishDto.getProduct(),wishDto.getMember(),wishDto.getAmount());
