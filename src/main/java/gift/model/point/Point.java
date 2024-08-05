@@ -25,6 +25,10 @@ public class Point {
         this.points = points;
     }
 
+    public void chargePoints(Integer addPoint){
+        this.points = points + addPoint;
+    }
+
     public Long getId() {
         return id;
     }
