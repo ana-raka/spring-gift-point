@@ -1,6 +1,7 @@
 package gift.service;
 
 import gift.dto.memberDto.MemberDto;
+import gift.dto.pointDto.PointDto;
 import gift.dto.pointDto.PointResponseDto;
 import gift.exception.ValueNotFoundException;
 import gift.model.member.Member;
@@ -29,13 +30,13 @@ public class PointService {
         return new PointResponseDto(member.getId(), points.getPoints());
     }
 
-    public PointResponseDto chargePoints(MemberDto memberDto, Integer addPoints){
-        Member member = memberRepository.findByEmail(memberDto.email()).
+    public PointResponseDto chargePoints(PointDto pointDto){
+        Member member = memberRepository.findById(pointDto.MemberId()).
                 orElseThrow(() -> new ValueNotFoundException("Member not exists in Database"));
 
         Point points = pointRepository.findByMemberId(member.getId()).
                 orElseThrow(() -> new ValueNotFoundException("User's Points not exists in Database"));
-        points.chargePoints(addPoints);
+        points.chargePoints(pointDto.points());
         pointRepository.save(points);
         return new PointResponseDto(member.getId(), points.getPoints());
     }
